@@ -1,4 +1,4 @@
-# Var Dump
+# Hide Memberlist
 
 ## Installation
 
