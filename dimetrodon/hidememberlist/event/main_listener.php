@@ -37,19 +37,19 @@ class main_listener implements EventSubscriberInterface
 	public static function getSubscribedEvents(): array
 	{
 		return [
-			'core.user_setup' => 'user_setup',
+			'core.page_header_after' => 'header_after',
 		];
 	}
 
 
 
 	/**
-	 * Loads on user setup.
+	 * Loads after the page header.
 	 * Blocks access to memberlist to non-Admins. 
 	 *
 	 * @param \phpbb\event\data	$event	Event object
 	 */
-	public function user_setup($event): void
+	public function header_after($event): void
 	{
 		// Are we in the full memberlist?
 		if ($this->user->page['page'] === 'memberlist.php' )
