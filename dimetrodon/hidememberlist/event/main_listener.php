@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Var Dump. An extension for the phpBB Forum Software package.
+ * Hide Memberlist. An extension for the phpBB Forum Software package.
  *
  * @copyright (c) 2024, [Dimetrodon]
  * @license GNU General Public License, version 2 (GPL-2.0)
