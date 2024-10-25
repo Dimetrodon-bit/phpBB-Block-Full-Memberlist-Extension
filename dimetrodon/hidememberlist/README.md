@@ -2,9 +2,9 @@
 
 ## Installation
 
-Copy the extension to phpBB/ext/dimetrodon/vardump
+Copy the extension to phpBB/ext/dimetrodon/hidememberlist
 
-Go to "ACP" > "Customise" > "Extensions" and enable the "Var Dump" extension.
+Go to "ACP" > "Customise" > "Extensions" and enable the "Hide Memberlist" extension.
 
 ## License
 
