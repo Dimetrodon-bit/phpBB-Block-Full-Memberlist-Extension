@@ -58,7 +58,7 @@ class main_listener implements EventSubscriberInterface
 			$this->language->add_lang('common', 'dimetrodon/hidememberlist');
 			
 			// Does this user lack administrative user permissions? 
-			if (!$this->auth->acl_gets('a_user', 'a_useradd', 'a_userdel'))
+			if (!$this->auth->acl_gets('a_user', 'a_userdel'))
 			{
 				// Display access denied message.
 				trigger_error('MEMBERLIST_FULL_BLOCKED');
@@ -72,7 +72,7 @@ class main_listener implements EventSubscriberInterface
 			$this->language->add_lang('common', 'dimetrodon/hidememberlist');
 			
 			// Does this user lack administrative user permissions? 
-			if (!$this->auth->acl_gets('a_user', 'a_useradd', 'a_userdel'))
+			if (!$this->auth->acl_gets('a_user', 'a_userdel'))
 			{
 				// Display access denied message.
 				trigger_error('MEMBERLIST_SEARCH_BLOCKED');
@@ -87,7 +87,7 @@ class main_listener implements EventSubscriberInterface
 			$this->language->add_lang('common', 'dimetrodon/hidememberlist');
 			
 			// Does this user lack administrative privileges? 
-			if (!$this->auth->acl_gets('a_user', 'a_useradd', 'a_userdel'))
+			if (!$this->auth->acl_gets('a_user', 'a_userdel'))
 			{
 				// Display access denied message.
 				trigger_error('MEMBERLIST_GROUP_BLOCKED');
