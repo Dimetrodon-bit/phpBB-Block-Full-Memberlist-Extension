@@ -87,7 +87,7 @@ class main_listener implements EventSubscriberInterface
 			if (!$this->auth->acl_gets('a_user', 'a_userdel'))
 			{
 				// Redirect to index page
-				redirect(append_sid("{$phpbb_root_path}index.$phpEx"));
+				redirect(append_sid("{$phpbb_root_path}index.php"));
 			}
 				
 			
