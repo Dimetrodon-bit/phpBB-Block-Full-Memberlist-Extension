@@ -80,17 +80,14 @@ class main_listener implements EventSubscriberInterface
 		}
 		
 		
-		// This will not prevent viewing direct links to groups but this will prevent navigating to groups from a member profile.
+		// Prevent navigating to groups from a member profile.
 		if ($this->user->page['page'] === 'memberlist.php?mode=group' )
 		{
-			//Load the language file.
-			$this->language->add_lang('common', 'dimetrodon/hidememberlist');
-			
 			// Does this user lack administrative privileges? 
 			if (!$this->auth->acl_gets('a_user', 'a_userdel'))
 			{
-				// Display access denied message.
-				trigger_error('MEMBERLIST_GROUP_BLOCKED');
+				// Redirect to index page
+				redirect(append_sid("{$phpbb_root_path}index.$phpEx"));
 			}
 				
 			
