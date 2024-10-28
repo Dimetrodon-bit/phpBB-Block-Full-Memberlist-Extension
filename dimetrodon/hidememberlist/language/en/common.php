@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Var Dump. An extension for the phpBB Forum Software package.
+ * Hide Memberlist. An extension for the phpBB Forum Software package.
  *
  * @copyright (c) 2024, [Dimetrodon]
  * @license GNU General Public License, version 2 (GPL-2.0)
@@ -37,7 +37,6 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, [
 
 	'MEMBERLIST_FULL_BLOCKED'		=> 'Sorry but you are not permitted to view the memberlist.',
-	'MEMBERLIST_GROUP_BLOCKED'		=> 'Sorry but you cannot search for usergroups from member profiles.',
 	'MEMBERLIST_SEARCH_BLOCKED'		=> 'Sorry but you are not permitted to search users.',
 
 ]);
