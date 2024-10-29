@@ -20,7 +20,7 @@ use phpbb\user;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
- * Var Dump Event listener.
+ * Hide Memberlist Event listener.
  */
 class main_listener implements EventSubscriberInterface
 {
