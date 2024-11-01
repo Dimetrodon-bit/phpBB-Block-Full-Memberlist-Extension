@@ -2,6 +2,11 @@ services:
     _defaults:
         autowire: true
 
+    dimetrodon.hidememberlist.controller.acp:
+        class: dimetrodon\hidememberlist\controller\acp_controller
+        tags:
+            - { name: acp.controller }
+            
     dimetrodon.hidememberlist.listener:
         class: dimetrodon\hidememberlist\event\main_listener
         tags:
