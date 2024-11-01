@@ -39,4 +39,7 @@ $lang = array_merge($lang, [
 	'MEMBERLIST_FULL_BLOCKED'		=> 'Sorry but you are not permitted to view the memberlist.',
 	'MEMBERLIST_SEARCH_BLOCKED'		=> 'Sorry but you are not permitted to search users.',
 
+	'ACP_HIDEMEMBERLIST_QUESTION'		=> 'Restrict memberlist view to admins only.',
+	'ACP_HIDEMEMBERLIST_SETTING_SAVED'	=> 'Settings have been saved successfully!',
+
 ]);
