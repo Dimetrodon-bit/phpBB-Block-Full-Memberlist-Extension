@@ -3,7 +3,7 @@
  *
  * Hide Memberlist. An extension for the phpBB Forum Software package.
  *
- * @copyright (c) 2024, [Dimetrodon]
+ * @copyright (c) 2024, [Dimetrodon], https://phpbbforever.com/home
  * @license GNU General Public License, version 2 (GPL-2.0)
  *
  */
@@ -35,13 +35,8 @@ if (empty($lang) || !is_array($lang))
 //
 
 $lang = array_merge($lang, [
+	'ACP_HIDEMEMBERLIST_TITLE'		=> 'Hide Memberlist Module',
+	'ACP_HIDEMEMBERLIST'			=> 'Hide Memberlist Settings',
 
-	'MEMBERLIST_FULL_BLOCKED'		=> 'Sorry but you are not permitted to view the memberlist.',
-	'MEMBERLIST_GROUP_BLOCKED'		=> 'Sorry but you are not permitted to view group details.',
-	'MEMBERLIST_SEARCH_BLOCKED'		=> 'Sorry but you are not permitted to search users.',
-	
-
-	'ACP_HIDEMEMBERLIST_QUESTION'		=> 'Restrict memberlist view to admins only',
-	'ACP_HIDEMEMBERLIST_SETTING_SAVED'	=> 'Settings have been saved successfully!',
-
+	'LOG_ACP_HIDEMEMBERLIST_SETTINGS'	=> '<strong>Hide Memberlist settings updated</strong>',
 ]);
