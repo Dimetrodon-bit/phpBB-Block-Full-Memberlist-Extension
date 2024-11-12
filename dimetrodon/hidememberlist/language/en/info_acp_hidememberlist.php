@@ -35,8 +35,8 @@ if (empty($lang) || !is_array($lang))
 //
 
 $lang = array_merge($lang, [
-	'ACP_HIDEMEMBERLIST_TITLE'	=> 'Hide Memberlist Module',
+	'ACP_HIDEMEMBERLIST_TITLE'		=> 'Hide Memberlist Module',
 	'ACP_HIDEMEMBERLIST'			=> 'Hide Memberlist Settings',
 
-	'LOG_ACP_HIDEMEMBERLIST_SETTINGS'		=> '<strong>Hide Memberlist settings updated</strong>',
+	'LOG_ACP_HIDEMEMBERLIST_SETTINGS'	=> '<strong>Hide Memberlist settings updated</strong>',
 ]);
