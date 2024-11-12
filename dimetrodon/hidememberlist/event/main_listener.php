@@ -51,6 +51,8 @@ class main_listener implements EventSubscriberInterface
 	 */
 	public function header_after($event): void
 	{
+		$location = $this->user->page['page'];
+		
 		// Are we in the full memberlist?
 		if ($this->user->page['page'] === 'memberlist.php' )
 		{
@@ -80,14 +82,17 @@ class main_listener implements EventSubscriberInterface
 		}
 		
 		
-		// Prevent navigating to groups from a member profile.
-		if ($this->user->page['page'] === 'memberlist.php?mode=group' )
+		// Are we trying to access group memberships? Not just mode=group but any page entailing group members.
+		if (str_contains($location, 'group'))
 		{
+			//Load the language file.
+			$this->language->add_lang('common', 'dimetrodon/hidememberlist');
+			
 			// Does this user lack administrative privileges? 
 			if (!$this->auth->acl_gets('a_user', 'a_userdel'))
 			{
 				// Redirect to index page
-				redirect(append_sid("{$phpbb_root_path}index.php"));
+				trigger_error('MEMBERLIST_GROUP_BLOCKED');
 			}
 				
 			
