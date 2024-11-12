@@ -91,7 +91,7 @@ class main_listener implements EventSubscriberInterface
 			// Does this user lack administrative privileges? 
 			if (!$this->auth->acl_gets('a_user', 'a_userdel'))
 			{
-				// Redirect to index page
+				// Display access denied message.
 				trigger_error('MEMBERLIST_GROUP_BLOCKED');
 			}
 				
