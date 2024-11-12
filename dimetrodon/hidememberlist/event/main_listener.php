@@ -51,6 +51,7 @@ class main_listener implements EventSubscriberInterface
 	 */
 	public function header_after($event): void
 	{
+		//Set the location variable
 		$location = $this->user->page['page'];
 		
 		// Are we in the full memberlist?
