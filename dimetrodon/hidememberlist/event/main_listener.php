@@ -51,12 +51,13 @@ class main_listener implements EventSubscriberInterface
 	 */
 	public function header_after($event): void
 	{
-		//Set the location variable
+		//Set the location variable. Set up where we are. 
 		$location = $this->user->page['page'];
 
+		// Are we viewing a page pertaining to the memberlist?
 		str_contains($location, 'Members');
 		{
-			//Load the language file.
+			//Load the language file. We only have to do this once now. 
 			$this->language->add_lang('common', 'dimetrodon/hidememberlist');
 
 			// Are we in the full memberlist?
