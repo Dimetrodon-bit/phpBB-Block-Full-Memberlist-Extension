@@ -59,15 +59,9 @@ class main_listener implements EventSubscriberInterface
 			//Load the language file.
 			$this->language->add_lang('common', 'dimetrodon/hidememberlist');
 
-		
-			
-		
 			// Are we in the full memberlist?
 			if ($this->user->page['page'] === 'memberlist.php' )
 			{
-				//Load the language file.
-				$this->language->add_lang('common', 'dimetrodon/hidememberlist');
-			
 				// Does this user lack administrative user permissions? 
 				if (!$this->auth->acl_gets('a_user', 'a_userdel'))
 				{
@@ -79,9 +73,6 @@ class main_listener implements EventSubscriberInterface
 			// Are we trying to search a user?
 			if ($this->user->page['page'] === 'memberlist.php?mode=searchuser' )
 			{
-				//Load the language file.
-				$this->language->add_lang('common', 'dimetrodon/hidememberlist');
-			
 				// Does this user lack administrative user permissions? 
 				if (!$this->auth->acl_gets('a_user', 'a_userdel'))
 				{
@@ -94,9 +85,6 @@ class main_listener implements EventSubscriberInterface
 			// Are we trying to access group memberships? Not just mode=group but any page entailing group members.
 			if (str_contains($location, 'group'))
 			{
-				//Load the language file.
-				$this->language->add_lang('common', 'dimetrodon/hidememberlist');
-			
 				// Does this user lack administrative privileges? 
 				if (!$this->auth->acl_gets('a_user', 'a_userdel'))
 				{
