@@ -63,6 +63,29 @@ class main_listener implements EventSubscriberInterface
 			//Load the language file. We only have to do this once now. 
 			$this->language->add_lang('common', 'dimetrodon/hidememberlist');
 
+
+			// Exclude needed modes from admin permission checks.
+			if (str_contains($location, 'viewprofile'))
+			{
+			    return;
+			}
+			
+			if (str_contains($location, 'team'))
+			{
+			    return;
+			}
+			
+			if (str_contains($location, 'email'))
+			{
+			    return;
+			}
+			if (str_contains($location, 'contactadmin'))
+			{
+			    return;
+			}
+			// End of exclusions. 
+			
+
 			// Are we trying to search a user?
 			if ($this->user->page['page'] === 'memberlist.php?mode=searchuser' )
 			{
@@ -89,16 +112,13 @@ class main_listener implements EventSubscriberInterface
 			}
 
 			// Default is full memberlist. This gets loaded if no other conditions are met.
-			// First, lets prevent this code from blocking the viewing of profiles.
-			if (!str_contains($location, 'viewprofile'))
+			// Does this user lack administrative user permissions? 
+			if (!$this->auth->acl_gets('a_user', 'a_userdel'))
 			{
-				// Does this user lack administrative user permissions? 
-				if (!$this->auth->acl_gets('a_user', 'a_userdel'))
-				{
-					// Display access denied message.
-					trigger_error('MEMBERLIST_FULL_BLOCKED');
-				}
+				// Display access denied message.
+				trigger_error('MEMBERLIST_FULL_BLOCKED');
 			}
+			
 			
 
 		}
