@@ -89,12 +89,17 @@ class main_listener implements EventSubscriberInterface
 			}
 
 			// Default is full memberlist. This gets loaded if no other conditions are met.
-			// Does this user lack administrative user permissions? 
-			if (!$this->auth->acl_gets('a_user', 'a_userdel'))
+			// First, lets prevent this code from blocking the viewing of profiles.
+			if (!str_contains($location, 'viewprofile'))
 			{
-				// Display access denied message.
-				trigger_error('MEMBERLIST_FULL_BLOCKED');
+				// Does this user lack administrative user permissions? 
+				if (!$this->auth->acl_gets('a_user', 'a_userdel'))
+				{
+					// Display access denied message.
+					trigger_error('MEMBERLIST_FULL_BLOCKED');
+				}
 			}
+			
 
 		}
 		
