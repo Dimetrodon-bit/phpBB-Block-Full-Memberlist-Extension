@@ -58,7 +58,7 @@ class main_listener implements EventSubscriberInterface
 
 		// Checking to see if the setting is enabled and that we are viewing a page pertaining to the memberlist.
 		// if ($this->config['dimetrodon_hidememberlist_options'] && str_contains($location, 'Members'))
-		if (substr($this->user->page['page_name'], 0, strpos($this->user->page['page_name'], '.')) === 'memberlist')
+		if ($this->config['dimetrodon_hidememberlist_options'] && substr($this->user->page['page_name'], 0, strpos($this->user->page['page_name'], '.')) === 'memberlist')
 		{
 			//Load the language file. We only have to do this once now. 
 			$this->language->add_lang('common', 'dimetrodon/hidememberlist');
