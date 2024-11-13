@@ -83,7 +83,7 @@ class main_listener implements EventSubscriberInterface
 			}
 		
 		
-			// Are we trying to access group memberships? Not just mode=group but any page entailing group members.
+			// Are we trying to access group memberships?
 			if (str_contains($location, 'group'))
 			{
 				// Does this user lack administrative privileges? 
