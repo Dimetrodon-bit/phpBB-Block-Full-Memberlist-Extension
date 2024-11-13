@@ -63,17 +63,6 @@ class main_listener implements EventSubscriberInterface
 			//Load the language file. We only have to do this once now. 
 			$this->language->add_lang('common', 'dimetrodon/hidememberlist');
 
-			// Are we in the full memberlist?
-			if ($this->user->page['page'] === 'memberlist.php' )
-			{
-				// Does this user lack administrative user permissions? 
-				if (!$this->auth->acl_gets('a_user', 'a_userdel'))
-				{
-					// Display access denied message.
-					trigger_error('MEMBERLIST_FULL_BLOCKED');
-				}
-			}
-		
 			// Are we trying to search a user?
 			if ($this->user->page['page'] === 'memberlist.php?mode=searchuser' )
 			{
@@ -97,6 +86,14 @@ class main_listener implements EventSubscriberInterface
 				}
 				
 			
+			}
+
+			// Default is full memberlist. This gets loaded if no other conditions are met.
+			// Does this user lack administrative user permissions? 
+			if (!$this->auth->acl_gets('a_user', 'a_userdel'))
+			{
+				// Display access denied message.
+				trigger_error('MEMBERLIST_FULL_BLOCKED');
 			}
 
 		}
