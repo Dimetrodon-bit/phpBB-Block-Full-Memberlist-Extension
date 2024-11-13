@@ -14,6 +14,7 @@ namespace dimetrodon\hidememberlist\event;
  * @ignore
  */
 use phpbb\auth\auth;
+use phpbb\config\config;
 use phpbb\language\language;
 use phpbb\template\twig\twig;
 use phpbb\user;
@@ -26,6 +27,7 @@ class main_listener implements EventSubscriberInterface
 {
 	public function __construct(
 		private auth $auth,
+		private config $config,
 		private language $language,
 		private twig $twig,
 		private user $user,
