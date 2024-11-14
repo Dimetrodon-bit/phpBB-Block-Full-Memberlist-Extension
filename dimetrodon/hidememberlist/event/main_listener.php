@@ -14,6 +14,7 @@ namespace dimetrodon\hidememberlist\event;
  * @ignore
  */
 use phpbb\auth\auth;
+use phpbb\config\config;
 use phpbb\language\language;
 use phpbb\template\twig\twig;
 use phpbb\user;
@@ -26,6 +27,7 @@ class main_listener implements EventSubscriberInterface
 {
 	public function __construct(
 		private auth $auth,
+		private config $config,
 		private language $language,
 		private twig $twig,
 		private user $user,
@@ -54,23 +56,35 @@ class main_listener implements EventSubscriberInterface
 		//Set the location variable. Set up where we are. 
 		$location = $this->user->page['page'];
 
-		// Are we viewing a page pertaining to the memberlist?
-		if (str_contains($location, 'Members'));
+		// Checking to see if the setting is enabled and that we are viewing a page pertaining to the memberlist.
+		if ($this->config['dimetrodon_hidememberlist_options'] && substr($this->user->page['page_name'], 0, strpos($this->user->page['page_name'], '.')) === 'memberlist')
 		{
 			//Load the language file. We only have to do this once now. 
 			$this->language->add_lang('common', 'dimetrodon/hidememberlist');
 
-			// Are we in the full memberlist?
-			if ($this->user->page['page'] === 'memberlist.php' )
+
+			// Exclude needed modes from admin permission checks.
+			if (str_contains($location, 'viewprofile'))
 			{
-				// Does this user lack administrative user permissions? 
-				if (!$this->auth->acl_gets('a_user', 'a_userdel'))
-				{
-					// Display access denied message.
-					trigger_error('MEMBERLIST_FULL_BLOCKED');
-				}
+			    return;
 			}
-		
+			
+			if (str_contains($location, 'team'))
+			{
+			    return;
+			}
+			
+			if (str_contains($location, 'email'))
+			{
+			    return;
+			}
+			if (str_contains($location, 'contactadmin'))
+			{
+			    return;
+			}
+			// End of exclusions. 
+			
+
 			// Are we trying to search a user?
 			if ($this->user->page['page'] === 'memberlist.php?mode=searchuser' )
 			{
@@ -95,6 +109,16 @@ class main_listener implements EventSubscriberInterface
 				
 			
 			}
+
+			// Default is full memberlist. This gets loaded if no other conditions are met.
+			// Does this user lack administrative user permissions? 
+			if (!$this->auth->acl_gets('a_user', 'a_userdel'))
+			{
+				// Display access denied message.
+				trigger_error('MEMBERLIST_FULL_BLOCKED');
+			}
+			
+			
 
 		}
 		
