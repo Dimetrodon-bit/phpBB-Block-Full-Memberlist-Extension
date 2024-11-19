@@ -55,8 +55,12 @@ class main_listener implements EventSubscriberInterface
 	 */
 	public function header_after($event): void
 	{
-		// Set the location variable. Set up where we are. 
-		// $location = $this->user->page['page'];
+		
+		// Hide memberlist link from those without access.
+		if ($this->config['dimetrodon_hidememberlist_options'] && !$this->auth->acl_gets('a_user', 'a_userdel'))
+		{
+			$this->template->assign_var('S_DISPLAY_MEMBERLIST', '');
+	 	}
 
 		// Checking to see if the setting is enabled and that we are viewing a page pertaining to the memberlist.
 		if ($this->config['dimetrodon_hidememberlist_options'] && substr($this->user->page['page_name'], 0, strpos($this->user->page['page_name'], '.')) === 'memberlist')
@@ -93,15 +97,9 @@ class main_listener implements EventSubscriberInterface
             		// Default is full memberlist. This gets loaded if no other conditions are met.
             		$this->access_denied_message('MEMBERLIST_FULL_BLOCKED');
 
-		}
-		
-		// Hide memberlist link from those without access.
-		if ($this->config['dimetrodon_hidememberlist_options'] && !$this->auth->acl_gets('a_user', 'a_userdel'))
-		{
-			$this->template->assign_var('S_DISPLAY_MEMBERLIST', '');
-	 	}
-		
+		}	
 	}
+	
 	private function access_denied_message($message)
     	{
         	// Display access denied message.
