@@ -53,8 +53,8 @@ class main_listener implements EventSubscriberInterface
 	 */
 	public function header_after($event): void
 	{
-		//Set the location variable. Set up where we are. 
-		$location = $this->user->page['page'];
+		// Set the location variable. Set up where we are. 
+		// $location = $this->user->page['page'];
 
 		// Checking to see if the setting is enabled and that we are viewing a page pertaining to the memberlist.
 		if ($this->config['dimetrodon_hidememberlist_options'] && substr($this->user->page['page_name'], 0, strpos($this->user->page['page_name'], '.')) === 'memberlist')
