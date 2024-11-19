@@ -103,7 +103,7 @@ class main_listener implements EventSubscriberInterface
     			}
 		}
 		
-		// Now, lets remove that pesky memberlist link for non-admins. First, we check the setting and for admin perms.
+		// Hide memberlist link from those without access.
 		if ($this->config['dimetrodon_hidememberlist_options'] && !$this->auth->acl_gets('a_user', 'a_userdel'))
 		{
 			$this->template->assign_var('S_DISPLAY_MEMBERLIST', '');
