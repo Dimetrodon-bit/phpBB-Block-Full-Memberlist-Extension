@@ -91,7 +91,7 @@ class main_listener implements EventSubscriberInterface
             		}
 
             		// Default is full memberlist. This gets loaded if no other conditions are met.
-            		$this->access_denied_message('MEMBERLIST_FULL_BLOCKED']);
+            		$this->access_denied_message('MEMBERLIST_FULL_BLOCKED');
 
     			private function access_denied_message($message)
     			{
