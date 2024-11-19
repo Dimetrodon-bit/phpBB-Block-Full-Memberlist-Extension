@@ -16,6 +16,7 @@ namespace dimetrodon\hidememberlist\event;
 use phpbb\auth\auth;
 use phpbb\config\config;
 use phpbb\language\language;
+use phpbb\template\template;
 use phpbb\template\twig\twig;
 use phpbb\user;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -29,6 +30,7 @@ class main_listener implements EventSubscriberInterface
 		private auth $auth,
 		private config $config,
 		private language $language,
+		private template $template,
 		private twig $twig,
 		private user $user,
 		
@@ -100,6 +102,12 @@ class main_listener implements EventSubscriberInterface
         			}
     			}
 		}
+		
+		// Now, lets remove that pesky memberlist link for non-admins. First, we check the setting and for admin perms.
+		if ($this->config['dimetrodon_hidememberlist_options'] && !$this->auth->acl_gets('a_user', 'a_userdel'))
+		{
+			$this->template->assign_var('S_DISPLAY_MEMBERLIST', '');
+	 	}
 		
 	}
 }
