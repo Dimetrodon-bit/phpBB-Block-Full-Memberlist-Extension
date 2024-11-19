@@ -67,7 +67,7 @@ class main_listener implements EventSubscriberInterface
             		if (str_contains($page, 'mode'))
             		{
             		    $page = substr($page, strpos($page, 'mode') + 5);
-             		   $page = explode('/', str_replace(['=', '&'], '/', $page));
+             		    $page = explode('/', str_replace(['=', '&'], '/', $page))[0];
             		}
 
             		$exclude = ['viewprofile', 'team', 'email', 'contactadmin'];
