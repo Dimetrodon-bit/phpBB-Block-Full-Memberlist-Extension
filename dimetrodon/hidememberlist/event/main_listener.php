@@ -66,49 +66,39 @@ class main_listener implements EventSubscriberInterface
             		$page = $this->user->page['page'];
             		if (str_contains($page, 'mode'))
             		{
-            		    $page = substr($page, strpos($page, 'mode') + 5);
-             		    $page = explode('/', str_replace(['=', '&'], '/', $page))[0];
+            			$page = substr($page, strpos($page, 'mode') + 5);
+             			$page = explode('/', str_replace(['=', '&'], '/', $page))[0];
             		}
 
             		$exclude = ['viewprofile', 'team', 'email', 'contactadmin'];
             		if (in_array($page, $exclude))
             		{
-            		    return;
+            			return;
            		}
 
-            		// Are we trying to search a user?
+    			// Are we trying to search a user?
             		if ($page === 'searchuser')
             		{
-                		// Does this user lack administrative user permissions? 
-                		if (!$this->auth->acl_gets('a_user', 'a_userdel'))
-                		{
-                		    // Display access denied message.
-                		    trigger_error('MEMBERLIST_SEARCH_BLOCKED');
-               		 	}
+                		$this->access_denied_message('MEMBERLIST_SEARCH_BLOCKED');
             		}
-        
-        
+
             		// Are we trying to access group memberships?
             		if ($page === 'group')
             		{
-                		// Does this user lack administrative privileges? 
-                		if (!$this->auth->acl_gets('a_user', 'a_userdel'))
-                		{
-                   		 // Display access denied message.
-                    		trigger_error('MEMBERLIST_GROUP_BLOCKED');
-                		}
+              			$this->access_denied_message('MEMBERLIST_GROUP_BLOCKED');
             		}
-			
-			// Default is full memberlist. This gets loaded if no other conditions are met.
-			// Does this user lack administrative user permissions? 
-			if (!$this->auth->acl_gets('a_user', 'a_userdel'))
-			{
-				// Display access denied message.
-				trigger_error('MEMBERLIST_FULL_BLOCKED');
-			}
-			
-			
 
+            		// Default is full memberlist. This gets loaded if no other conditions are met.
+            		$this->access_denied_message('MEMBERLIST_FULL_BLOCKED']);
+
+    			private function access_denied_message($message)
+    			{
+        			// Display access denied message.
+        			if (!$this->auth->acl_gets('a_user', 'a_userdel'))
+        			{
+            				trigger_error($message);
+        			}
+    			}
 		}
 		
 	}
