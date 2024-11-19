@@ -74,7 +74,7 @@ class main_listener implements EventSubscriberInterface
             		if (in_array($page, $exclude))
             		{
             		    return;
-           		 }
+           		}
 
             		// Are we trying to search a user?
             		if ($page === 'searchuser')
