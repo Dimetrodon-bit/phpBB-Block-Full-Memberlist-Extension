@@ -16,7 +16,6 @@ namespace dimetrodon\hidememberlist\event;
 use phpbb\auth\auth;
 use phpbb\config\config;
 use phpbb\language\language;
-use phpbb\template\template;
 use phpbb\template\twig\twig;
 use phpbb\user;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -30,7 +29,6 @@ class main_listener implements EventSubscriberInterface
 		private auth $auth,
 		private config $config,
 		private language $language,
-		private template $template,
 		private twig $twig,
 		private user $user,
 		
@@ -55,13 +53,6 @@ class main_listener implements EventSubscriberInterface
 	 */
 	public function header_after($event): void
 	{
-		
-		// Hide memberlist link from those without access.
-		if ($this->config['dimetrodon_hidememberlist_options'] && !$this->auth->acl_gets('a_user', 'a_userdel'))
-		{
-			$this->template->assign_var('S_DISPLAY_MEMBERLIST', '');
-	 	}
-
 		// Checking to see if the setting is enabled and that we are viewing a page pertaining to the memberlist.
 		if ($this->config['dimetrodon_hidememberlist_options'] && substr($this->user->page['page_name'], 0, strpos($this->user->page['page_name'], '.')) === 'memberlist')
 		{
@@ -105,6 +96,7 @@ class main_listener implements EventSubscriberInterface
         	// Display access denied message.
         	if (!$this->auth->acl_gets('a_user', 'a_userdel'))
         	{
+			$this->twig->assign_var('S_DISPLAY_MEMBERLIST', true);
             		trigger_error($message);
         	}
     	}
