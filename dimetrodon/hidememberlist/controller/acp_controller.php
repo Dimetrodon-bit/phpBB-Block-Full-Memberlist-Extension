@@ -86,6 +86,7 @@ class acp_controller
 			{
 				// Set the options the user configured
 				$this->config->set('dimetrodon_hidememberlist_options', $this->request->variable('dimetrodon_hidememberlist_options', 0));
+				$this->config->set('dimetrodon_hideteam_options', $this->request->variable('dimetrodon_hideteam_options', 0));
 
 				// Add option settings change action to the admin log
 				$this->log->add('admin', $this->user->data['user_id'], $this->user->ip, 'LOG_ACP_HIDEMEMBERLIST_SETTINGS');
@@ -106,6 +107,7 @@ class acp_controller
 			'U_ACTION'		=> $this->u_action,
 
 			'DIMETRODON_HIDEMEMBERLIST_OPTIONS'	=> (bool) $this->config['dimetrodon_hidememberlist_options'],
+			'DIMETRODON_HIDETEAM_OPTIONS'		=> (bool) $this->config['dimetrodon_hideteam_options'],
 		]);
 	}
 
