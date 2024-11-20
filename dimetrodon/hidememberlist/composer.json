@@ -3,7 +3,7 @@
     "type": "phpbb-extension",
     "description": "Hide Full Memberlist from non-admins",
     "homepage": "",
-    "version": "1.0.6-alpha",
+    "version": "1.0.8-alpha",
     "time": "2024-10-22",
     "license": "GPL-2.0-only",
     "authors": [
