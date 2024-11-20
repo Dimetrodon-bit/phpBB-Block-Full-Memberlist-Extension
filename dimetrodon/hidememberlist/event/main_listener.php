@@ -53,6 +53,11 @@ class main_listener implements EventSubscriberInterface
 	 */
 	public function header_after($event): void
 	{
+		if ($this->config['dimetrodon_hideteam_options'])
+		{
+			//code to disable team page will go here.
+		}
+		
 		// Globally removing memberlist links for non-admins if the setting is enabled. 
 		if ($this->config['dimetrodon_hidememberlist_options'] && !$this->auth->acl_gets('a_user', 'a_userdel'))
 		{
