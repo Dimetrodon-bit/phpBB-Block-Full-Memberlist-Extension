@@ -53,9 +53,11 @@ class main_listener implements EventSubscriberInterface
 	 */
 	public function header_after($event): void
 	{
+		// Checking to see if the team page is disabled.
 		if ($this->config['dimetrodon_hideteam_options'])
 		{
-			//code to disable team page will go here.
+			// Globally removing team link for all users.
+			$this->twig->assign_var('U_TEAM', false);
 		}
 		
 		// Globally removing memberlist links for non-admins if the setting is enabled. 
