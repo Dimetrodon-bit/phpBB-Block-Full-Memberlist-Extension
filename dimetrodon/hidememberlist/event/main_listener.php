@@ -53,7 +53,7 @@ class main_listener implements EventSubscriberInterface
 	 */
 	public function header_after($event): void
 	{
-		// Removing memberlist links for non-admins if the setting is enabled. 
+		// Globally removing memberlist links for non-admins if the setting is enabled. 
 		if ($this->config['dimetrodon_hidememberlist_options'] && !$this->auth->acl_gets('a_user', 'a_userdel'))
 		{
 			$this->twig->assign_var('S_DISPLAY_MEMBERLIST', false);
