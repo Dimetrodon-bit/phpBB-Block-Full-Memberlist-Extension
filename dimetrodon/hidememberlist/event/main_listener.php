@@ -53,9 +53,12 @@ class main_listener implements EventSubscriberInterface
 	 */
 	public function header_after($event): void
 	{
-		//Set the location variable. Set up where we are. 
-		$location = $this->user->page['page'];
-
+		// Globally removing memberlist links for non-admins if the setting is enabled. 
+		if ($this->config['dimetrodon_hidememberlist_options'] && !$this->auth->acl_gets('a_user', 'a_userdel'))
+		{
+			$this->twig->assign_var('S_DISPLAY_MEMBERLIST', false);
+		}
+		
 		// Checking to see if the setting is enabled and that we are viewing a page pertaining to the memberlist.
 		if ($this->config['dimetrodon_hidememberlist_options'] && substr($this->user->page['page_name'], 0, strpos($this->user->page['page_name'], '.')) === 'memberlist')
 		{
@@ -63,64 +66,43 @@ class main_listener implements EventSubscriberInterface
 			$this->language->add_lang('common', 'dimetrodon/hidememberlist');
 
 
-			// Exclude needed modes from admin permission checks.
-			if (str_contains($location, 'viewprofile'))
-			{
-			    return;
-			}
-			
-			if (str_contains($location, 'team'))
-			{
-			    return;
-			}
-			
-			if (str_contains($location, 'email'))
-			{
-			    return;
-			}
-			if (str_contains($location, 'contactadmin'))
-			{
-			    return;
-			}
-			// End of exclusions. 
-			
+            		$page = $this->user->page['page'];
+            		if (str_contains($page, 'mode'))
+            		{
+            			$page = substr($page, strpos($page, 'mode') + 5);
+             			$page = explode('/', str_replace(['=', '&'], '/', $page))[0];
+            		}
 
-			// Are we trying to search a user?
-			if ($this->user->page['page'] === 'memberlist.php?mode=searchuser' )
-			{
-				// Does this user lack administrative user permissions? 
-				if (!$this->auth->acl_gets('a_user', 'a_userdel'))
-				{
-					// Display access denied message.
-					trigger_error('MEMBERLIST_SEARCH_BLOCKED');
-				}
-			}
-		
-		
-			// Are we trying to access group memberships?
-			if (str_contains($location, 'group'))
-			{
-				// Does this user lack administrative privileges? 
-				if (!$this->auth->acl_gets('a_user', 'a_userdel'))
-				{
-					// Display access denied message.
-					trigger_error('MEMBERLIST_GROUP_BLOCKED');
-				}
-				
-			
-			}
+            		$exclude = ['viewprofile', 'team', 'email', 'contactadmin'];
+            		if (in_array($page, $exclude))
+            		{
+            			return;
+           		}
 
-			// Default is full memberlist. This gets loaded if no other conditions are met.
-			// Does this user lack administrative user permissions? 
-			if (!$this->auth->acl_gets('a_user', 'a_userdel'))
-			{
-				// Display access denied message.
-				trigger_error('MEMBERLIST_FULL_BLOCKED');
-			}
-			
-			
+    			// Are we trying to search a user?
+            		if ($page === 'searchuser')
+            		{
+                		$this->access_denied_message('MEMBERLIST_SEARCH_BLOCKED');
+            		}
 
-		}
-		
+            		// Are we trying to access group memberships?
+            		if ($page === 'group')
+            		{
+              			$this->access_denied_message('MEMBERLIST_GROUP_BLOCKED');
+            		}
+
+            		// Default is full memberlist. This gets loaded if no other conditions are met.
+            		$this->access_denied_message('MEMBERLIST_FULL_BLOCKED');
+
+		}	
 	}
+	
+	private function access_denied_message($message)
+    	{
+        	// Display access denied message.
+        	if (!$this->auth->acl_gets('a_user', 'a_userdel'))
+        	{
+			trigger_error($message);
+        	}
+    	}
 }
