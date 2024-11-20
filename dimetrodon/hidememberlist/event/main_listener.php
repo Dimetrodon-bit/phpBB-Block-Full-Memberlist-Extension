@@ -53,6 +53,12 @@ class main_listener implements EventSubscriberInterface
 	 */
 	public function header_after($event): void
 	{
+		// Removing memberlist links for non-admins if the setting is enabled. 
+		if ($this->config['dimetrodon_hidememberlist_options'] && !$this->auth->acl_gets('a_user', 'a_userdel'))
+		{
+			$this->twig->assign_var('S_DISPLAY_MEMBERLIST', false);
+		}
+		
 		// Checking to see if the setting is enabled and that we are viewing a page pertaining to the memberlist.
 		if ($this->config['dimetrodon_hidememberlist_options'] && substr($this->user->page['page_name'], 0, strpos($this->user->page['page_name'], '.')) === 'memberlist')
 		{
@@ -96,8 +102,7 @@ class main_listener implements EventSubscriberInterface
         	// Display access denied message.
         	if (!$this->auth->acl_gets('a_user', 'a_userdel'))
         	{
-			$this->twig->assign_var('S_DISPLAY_MEMBERLIST', false);
-            		trigger_error($message);
+			trigger_error($message);
         	}
     	}
 }
