@@ -96,7 +96,7 @@ class main_listener implements EventSubscriberInterface
         	// Display access denied message.
         	if (!$this->auth->acl_gets('a_user', 'a_userdel'))
         	{
-			$this->twig->assign_var('S_DISPLAY_MEMBERLIST', true);
+			$this->twig->assign_var('S_DISPLAY_MEMBERLIST', false);
             		trigger_error($message);
         	}
     	}
