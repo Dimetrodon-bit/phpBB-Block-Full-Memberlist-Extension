@@ -58,6 +58,13 @@ class main_listener implements EventSubscriberInterface
 		{
 			// Globally removing team link for all users.
 			$this->twig->assign_var('U_TEAM', false);
+			
+			$page = $this->user->page['page'];
+            		if (str_contains($page, 'team'))
+			{
+				// Redirect to index page if team page is disabled.
+				redirect(append_sid("{$phpbb_root_path}index.php"));
+			}
 		}
 		
 		// Globally removing memberlist links for non-admins if the setting is enabled. 
