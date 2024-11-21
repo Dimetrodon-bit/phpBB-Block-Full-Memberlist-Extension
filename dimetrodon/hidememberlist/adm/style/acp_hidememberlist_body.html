@@ -18,6 +18,11 @@
 			<dd><label><input type="radio" class="radio" name="dimetrodon_hidememberlist_options" value="1"{% if DIMETRODON_HIDEMEMBERLIST_OPTIONS %} checked="checked"{% endif %} /> {{ lang('YES') }}</label>
 				<label><input type="radio" class="radio" name="dimetrodon_hidememberlist_options" value="0"{% if not DIMETRODON_HIDEMEMBERLIST_OPTIONS %} checked="checked"{% endif %} /> {{ lang('NO') }}</label></dd>
 		</dl>
+		<dl>
+			<dt><label for="dimetrodon_hideteam_options">{{ lang('ACP_HIDETEAM_QUESTION') ~ lang('COLON') }}</label></dt>
+			<dd><label><input type="radio" class="radio" name="dimetrodon_hideteam_options" value="1"{% if DIMETRODON_HIDETEAM_OPTIONS %} checked="checked"{% endif %} /> {{ lang('YES') }}</label>
+				<label><input type="radio" class="radio" name="dimetrodon_hideteam_options" value="0"{% if not DIMETRODON_HIDETEAM_OPTIONS %} checked="checked"{% endif %} /> {{ lang('NO') }}</label></dd>
+		</dl>
 	</fieldset>
 
 	<fieldset class="submit-buttons">

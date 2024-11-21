@@ -15,6 +15,7 @@ class install_acp_module extends \phpbb\db\migration\migration
 	public function effectively_installed()
 	{
 		return isset($this->config['dimetrodon_hidememberlist_options']);
+		return isset($this->config['dimetrodon_hideteam_options']);
 	}
 
 	public static function depends_on()
@@ -26,6 +27,7 @@ class install_acp_module extends \phpbb\db\migration\migration
 	{
 		return [
 			['config.add', ['dimetrodon_hidememberlist_options', 0]],
+			['config.add', ['dimetrodon_hideteam_options', 0]],
 
 			['module.add', [
 				'acp',

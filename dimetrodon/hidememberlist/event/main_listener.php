@@ -53,6 +53,20 @@ class main_listener implements EventSubscriberInterface
 	 */
 	public function header_after($event): void
 	{
+		// Checking to see if the team page is disabled.
+		if ($this->config['dimetrodon_hideteam_options'])
+		{
+			// Globally removing team link for all users.
+			$this->twig->assign_var('U_TEAM', false);
+			
+			$page = $this->user->page['page'];
+            		if (str_contains($page, 'team'))
+			{
+				// Redirect to index page if team page is disabled.
+				redirect(append_sid("{$phpbb_root_path}index.php"));
+			}
+		}
+		
 		// Globally removing memberlist links for non-admins if the setting is enabled. 
 		if ($this->config['dimetrodon_hidememberlist_options'] && !$this->auth->acl_gets('a_user', 'a_userdel'))
 		{
