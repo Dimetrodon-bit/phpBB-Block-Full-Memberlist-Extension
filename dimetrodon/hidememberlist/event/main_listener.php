@@ -53,13 +53,15 @@ class main_listener implements EventSubscriberInterface
 	 */
 	public function header_after($event): void
 	{
+		// Lets set our page variable. 
+		$page = $this->user->page['page'];
+		
 		// Checking to see if the team page is disabled.
 		if ($this->config['dimetrodon_hideteam_options'])
 		{
 			// Globally removing team link for all users.
 			$this->twig->assign_var('U_TEAM', false);
 			
-			$page = $this->user->page['page'];
             		if (str_contains($page, 'team'))
 			{
 				// Redirect to index page if team page is disabled.
@@ -80,7 +82,6 @@ class main_listener implements EventSubscriberInterface
 			$this->language->add_lang('common', 'dimetrodon/hidememberlist');
 
 
-            		$page = $this->user->page['page'];
             		if (str_contains($page, 'mode'))
             		{
             			$page = substr($page, strpos($page, 'mode') + 5);
