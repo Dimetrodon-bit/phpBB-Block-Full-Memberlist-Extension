@@ -53,7 +53,7 @@ class main_listener implements EventSubscriberInterface
 	 */
 	public function header_after($event): void
 	{
-		// Lets set our page variable. 
+		// Let's set our page variable. 
 		$page = $this->user->page['page'];
 		
 		// Checking to see if the team page is disabled.
