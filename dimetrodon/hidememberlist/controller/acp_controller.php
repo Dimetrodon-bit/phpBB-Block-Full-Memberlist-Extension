@@ -10,6 +10,13 @@
 
 namespace dimetrodon\hidememberlist\controller;
 
+use phpbb\config\config;
+use phpbb\language\language;
+use phpbb\log\log;
+use phpbb\request\request;
+use phpbb\template\template;
+use phpbb\user;
+
 /**
  * Hide Memberlist ACP controller.
  */
