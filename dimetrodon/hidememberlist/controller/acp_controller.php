@@ -15,24 +15,6 @@ namespace dimetrodon\hidememberlist\controller;
  */
 class acp_controller
 {
-	/** @var \phpbb\config\config */
-	protected $config;
-
-	/** @var \phpbb\language\language */
-	protected $language;
-
-	/** @var \phpbb\log\log */
-	protected $log;
-
-	/** @var \phpbb\request\request */
-	protected $request;
-
-	/** @var \phpbb\template\template */
-	protected $template;
-
-	/** @var \phpbb\user */
-	protected $user;
-
 	/** @var string Custom form action */
 	protected $u_action;
 
