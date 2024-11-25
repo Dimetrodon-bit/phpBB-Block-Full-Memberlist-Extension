@@ -28,15 +28,20 @@ class acp_controller
 	 * @param \phpbb\template\template	$template	Template object
 	 * @param \phpbb\user				$user		User object
 	 */
-	public function __construct(\phpbb\config\config $config, \phpbb\language\language $language, \phpbb\log\log $log, \phpbb\request\request $request, \phpbb\template\template $template, \phpbb\user $user)
+	public function __construct(
+	
+		protected config $config,
+		protected language $language,
+		protected log $log,
+		protected request $request,
+		protected template $template,
+		protected user $user,
+
+	)
 	{
-		$this->config	= $config;
-		$this->language	= $language;
-		$this->log		= $log;
-		$this->request	= $request;
-		$this->template	= $template;
-		$this->user		= $user;
+
 	}
+	
 
 	/**
 	 * Display the options a user can configure for this extension.
