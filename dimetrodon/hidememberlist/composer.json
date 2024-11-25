@@ -3,7 +3,7 @@
     "type": "phpbb-extension",
     "description": "Hide Full Memberlist from non-admins",
     "homepage": "https://phpbbforever.com/viewtopic.php?t=35",
-    "version": "1.1.1-alpha",
+    "version": "1.1.2-alpha",
     "time": "2024-10-22",
     "license": "GPL-2.0-only",
     "authors": [
@@ -21,7 +21,7 @@
     "extra": {
         "display-name": "Hide Memberlist",
         "soft-require": {
-            "phpbb/phpbb": ">=3.3.0,<4.0.0@dev"
+            "phpbb/phpbb": ">=3.3.0"
         }
     }
 }
