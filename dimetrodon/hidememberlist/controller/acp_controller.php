@@ -10,29 +10,18 @@
 
 namespace dimetrodon\hidememberlist\controller;
 
+use phpbb\config\config;
+use phpbb\language\language;
+use phpbb\log\log;
+use phpbb\request\request;
+use phpbb\template\template;
+use phpbb\user;
+
 /**
  * Hide Memberlist ACP controller.
  */
 class acp_controller
 {
-	/** @var \phpbb\config\config */
-	protected $config;
-
-	/** @var \phpbb\language\language */
-	protected $language;
-
-	/** @var \phpbb\log\log */
-	protected $log;
-
-	/** @var \phpbb\request\request */
-	protected $request;
-
-	/** @var \phpbb\template\template */
-	protected $template;
-
-	/** @var \phpbb\user */
-	protected $user;
-
 	/** @var string Custom form action */
 	protected $u_action;
 
@@ -46,15 +35,19 @@ class acp_controller
 	 * @param \phpbb\template\template	$template	Template object
 	 * @param \phpbb\user				$user		User object
 	 */
-	public function __construct(\phpbb\config\config $config, \phpbb\language\language $language, \phpbb\log\log $log, \phpbb\request\request $request, \phpbb\template\template $template, \phpbb\user $user)
+	public function __construct(
+	
+		protected config $config,
+		protected language $language,
+		protected log $log,
+		protected request $request,
+		protected template $template,
+		protected user $user,
+
+	)
 	{
-		$this->config	= $config;
-		$this->language	= $language;
-		$this->log		= $log;
-		$this->request	= $request;
-		$this->template	= $template;
-		$this->user		= $user;
 	}
+	
 
 	/**
 	 * Display the options a user can configure for this extension.
