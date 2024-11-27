@@ -72,7 +72,7 @@ class main_listener implements EventSubscriberInterface
 		}
 		
 		// Checking to see if we are viewing a page pertaining to the memberlist.
-		if (substr($this->user->page['page_name'], 0, strpos($this->user->page['page_name'], '.')) === 'memberlist')
+		if (str_contains($page, 'memberlist'))
 		{
 			//Load the language file. We only have to do this once now. 
 			$this->language->add_lang('common', 'dimetrodon/hidememberlist');
