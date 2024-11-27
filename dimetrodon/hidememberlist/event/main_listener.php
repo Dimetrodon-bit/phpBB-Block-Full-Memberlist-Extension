@@ -55,18 +55,14 @@ class main_listener implements EventSubscriberInterface
 	{
 		// Let's set our page variable. 
 		$page = $this->user->page['page'];
+		$exclude = ['viewprofile', 'team', 'email', 'contactadmin'];
 		
 		// Checking to see if the team page is disabled.
 		if ($this->config['dimetrodon_hideteam_options'])
 		{
 			// Globally removing team link for all users.
 			$this->twig->assign_var('U_TEAM', false);
-			
-            		if (str_contains($page, 'team'))
-			{
-				// Redirect to index page if team page is disabled.
-				redirect(append_sid("{$phpbb_root_path}index.php"));
-			}
+			unset($exclude[1]);
 		}
 		
 		// Globally removing memberlist links for non-admins if the extension is enabled. 
@@ -81,14 +77,12 @@ class main_listener implements EventSubscriberInterface
 			//Load the language file. We only have to do this once now. 
 			$this->language->add_lang('common', 'dimetrodon/hidememberlist');
 
-
             		if (str_contains($page, 'mode'))
             		{
             			$page = substr($page, strpos($page, 'mode') + 5);
              			$page = explode('/', str_replace(['=', '&'], '/', $page))[0];
             		}
 
-            		$exclude = ['viewprofile', 'team', 'email', 'contactadmin'];
             		if (in_array($page, $exclude))
             		{
             			return;
