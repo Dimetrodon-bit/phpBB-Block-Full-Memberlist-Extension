@@ -12,11 +12,7 @@ namespace dimetrodon\hidememberlist\migrations;
 
 class install_acp_module extends \phpbb\db\migration\migration
 {
-	public function effectively_installed()
-	{
-		return isset($this->config['dimetrodon_hidememberlist_options']);
-		return isset($this->config['dimetrodon_hideteam_options']);
-	}
+
 
 	public static function depends_on()
 	{

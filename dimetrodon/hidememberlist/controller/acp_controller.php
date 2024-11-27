@@ -48,7 +48,6 @@ class acp_controller
 	{
 	}
 	
-
 	/**
 	 * Display the options a user can configure for this extension.
 	 *
