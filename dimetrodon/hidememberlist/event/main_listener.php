@@ -101,7 +101,7 @@ class main_listener implements EventSubscriberInterface
             		}
 
             		// Are we trying to access the team page (if unexcluded)?
-            		if ($page === 'TEAM')
+            		if ($page === 'team')
             		{
               			$this->access_denied_message('MEMBERLIST_TEAMPAGE_BLOCKED');
             		}
