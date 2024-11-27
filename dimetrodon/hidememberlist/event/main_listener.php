@@ -97,7 +97,7 @@ class main_listener implements EventSubscriberInterface
     	private function access_denied_message($page): mixed
     	{
       	  	$message = 'MEMBERLIST_' . strtoupper($page) . '_BLOCKED';
-      	  	if (!isset($this->language->lang($message)))
+      	  	if ($this->language->is_set($message) !== true)
       	  	{
       	  	    $message = 'MEMBERLIST_FULL_BLOCKED';
        	  	}
