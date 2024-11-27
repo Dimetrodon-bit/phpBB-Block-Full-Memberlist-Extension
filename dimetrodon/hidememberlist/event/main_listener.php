@@ -91,7 +91,7 @@ class main_listener implements EventSubscriberInterface
     			// Are we trying to search a user?
             		if ($page === 'searchuser')
             		{
-                		$this->access_denied_message('MEMBERLIST_SEARCH_BLOCKED');
+                		$this->access_denied_message('MEMBERLIST_SEARCHUSER_BLOCKED');
             		}
 
             		// Are we trying to access group memberships?
