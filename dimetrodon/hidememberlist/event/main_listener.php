@@ -69,14 +69,14 @@ class main_listener implements EventSubscriberInterface
 			}
 		}
 		
-		// Globally removing memberlist links for non-admins if the setting is enabled. 
-		if ($this->config['dimetrodon_hidememberlist_options'] && !$this->auth->acl_gets('a_user', 'a_userdel'))
+		// Globally removing memberlist links for non-admins if the extension is enabled. 
+		if (!$this->auth->acl_gets('a_user', 'a_userdel'))
 		{
 			$this->twig->assign_var('S_DISPLAY_MEMBERLIST', false);
 		}
 		
-		// Checking to see if the setting is enabled and that we are viewing a page pertaining to the memberlist.
-		if ($this->config['dimetrodon_hidememberlist_options'] && substr($this->user->page['page_name'], 0, strpos($this->user->page['page_name'], '.')) === 'memberlist')
+		// Checking to see if we are viewing a page pertaining to the memberlist.
+		if (substr($this->user->page['page_name'], 0, strpos($this->user->page['page_name'], '.')) === 'memberlist')
 		{
 			//Load the language file. We only have to do this once now. 
 			$this->language->add_lang('common', 'dimetrodon/hidememberlist');
