@@ -88,36 +88,24 @@ class main_listener implements EventSubscriberInterface
             			return;
            		}
 
-    			// Are we trying to search a user?
-            		if ($page === 'searchuser')
-            		{
-                		$this->access_denied_message('MEMBERLIST_SEARCHUSER_BLOCKED');
-            		}
-
-            		// Are we trying to access group memberships?
-            		if ($page === 'group')
-            		{
-              			$this->access_denied_message('MEMBERLIST_GROUP_BLOCKED');
-            		}
-
-            		// Are we trying to access the team page (if unexcluded)?
-            		if ($page === 'team')
-            		{
-              			$this->access_denied_message('MEMBERLIST_TEAMPAGE_BLOCKED');
-            		}
-
-            		// Default is full memberlist. This gets loaded if no other conditions are met.
-            		$this->access_denied_message('MEMBERLIST_FULL_BLOCKED');
+			// Trigger denied message
+            		$this->access_denied_message($page);
 
 		}	
 	}
 	
-	private function access_denied_message($message)
+    	private function access_denied_message($page): mixed
     	{
-        	// Display access denied message.
-        	if (!$this->auth->acl_gets('a_user', 'a_userdel'))
-        	{
+      	  	$message = 'MEMBERLIST_' . strtoupper($page) . '_BLOCKED';
+      	  	if (!isset($this->language->lang($message)))
+      	  	{
+      	  	    $message = 'MEMBERLIST_FULL_BLOCKED';
+       	  	}
+
+      	  	// Display access denied message.
+      	  	if (!$this->auth->acl_gets('a_user', 'a_userdel'))
+      	  	{
 			trigger_error($message);
-        	}
+      	  	}
     	}
 }
