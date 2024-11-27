@@ -100,6 +100,12 @@ class main_listener implements EventSubscriberInterface
               			$this->access_denied_message('MEMBERLIST_GROUP_BLOCKED');
             		}
 
+            		// Are we trying to access the team page (if unexcluded)?
+            		if ($page === 'TEAM')
+            		{
+              			$this->access_denied_message('MEMBERLIST_TEAMPAGE_BLOCKED');
+            		}
+
             		// Default is full memberlist. This gets loaded if no other conditions are met.
             		$this->access_denied_message('MEMBERLIST_FULL_BLOCKED');
 
