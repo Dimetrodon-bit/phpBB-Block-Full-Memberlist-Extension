@@ -94,18 +94,18 @@ class main_listener implements EventSubscriberInterface
 		}	
 	}
 	
-    	private function access_denied_message($page): mixed
-    	{
-      	  	$message = 'MEMBERLIST_' . strtoupper($page) . '_BLOCKED';
-      	  	if ($this->language->is_set($message) !== true)
-      	  	{
-      	  	    $message = 'MEMBERLIST_FULL_BLOCKED';
-       	  	}
+	private function access_denied_message($page): mixed
+	{
+		$message = 'MEMBERLIST_' . strtoupper($page) . '_BLOCKED';
+		if ($this->language->is_set($message) !== true)
+		{
+			$message = 'MEMBERLIST_FULL_BLOCKED';
+		}
 
-      	  	// Display access denied message.
-      	  	if (!$this->auth->acl_gets('a_user', 'a_userdel'))
-      	  	{
+		// Display access denied message.
+		if (!$this->auth->acl_gets('a_user', 'a_userdel'))
+		{
 			trigger_error($message);
-      	  	}
-    	}
+		}
+	}
 }
