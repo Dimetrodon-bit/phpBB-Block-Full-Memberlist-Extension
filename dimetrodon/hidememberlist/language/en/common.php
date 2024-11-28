@@ -43,7 +43,7 @@ $lang = array_merge($lang, [
 	
 
 	
-	'ACP_HIDETEAM_QUESTION'			=> 'Also disable the team page for all users',
+	'ACP_HIDETEAM_QUESTION'			=> 'Disable the team page for all users',
 	'ACP_HIDEMEMBERLIST_SETTING_SAVED'	=> 'Settings have been saved successfully!',
 
 ]);
