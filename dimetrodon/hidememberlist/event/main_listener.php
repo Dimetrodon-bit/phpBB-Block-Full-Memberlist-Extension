@@ -55,69 +55,57 @@ class main_listener implements EventSubscriberInterface
 	{
 		// Let's set our page variable. 
 		$page = $this->user->page['page'];
+		$exclude = ['viewprofile', 'team', 'email', 'contactadmin'];
 		
 		// Checking to see if the team page is disabled.
 		if ($this->config['dimetrodon_hideteam_options'])
 		{
 			// Globally removing team link for all users.
 			$this->twig->assign_var('U_TEAM', false);
-			
-            		if (str_contains($page, 'team'))
-			{
-				// Redirect to index page if team page is disabled.
-				redirect(append_sid("{$phpbb_root_path}index.php"));
-			}
+			unset($exclude[1]);
 		}
 		
-		// Globally removing memberlist links for non-admins if the setting is enabled. 
-		if ($this->config['dimetrodon_hidememberlist_options'] && !$this->auth->acl_gets('a_user', 'a_userdel'))
+		// Globally removing memberlist links for non-admins if the extension is enabled. 
+		if (!$this->auth->acl_gets('a_user', 'a_userdel'))
 		{
 			$this->twig->assign_var('S_DISPLAY_MEMBERLIST', false);
 		}
 		
-		// Checking to see if the setting is enabled and that we are viewing a page pertaining to the memberlist.
-		if ($this->config['dimetrodon_hidememberlist_options'] && substr($this->user->page['page_name'], 0, strpos($this->user->page['page_name'], '.')) === 'memberlist')
+		// Checking to see if we are viewing a page pertaining to the memberlist.
+		if (str_contains($page, 'memberlist'))
 		{
 			//Load the language file. We only have to do this once now. 
 			$this->language->add_lang('common', 'dimetrodon/hidememberlist');
 
+			if (str_contains($page, 'mode'))
+			{
+				$page = substr($page, strpos($page, 'mode') + 5);
+				$page = explode('/', str_replace(['=', '&'], '/', $page))[0];
+			}
 
-            		if (str_contains($page, 'mode'))
-            		{
-            			$page = substr($page, strpos($page, 'mode') + 5);
-             			$page = explode('/', str_replace(['=', '&'], '/', $page))[0];
-            		}
+			if (in_array($page, $exclude))
+			{
+				return;
+			}
 
-            		$exclude = ['viewprofile', 'team', 'email', 'contactadmin'];
-            		if (in_array($page, $exclude))
-            		{
-            			return;
-           		}
-
-    			// Are we trying to search a user?
-            		if ($page === 'searchuser')
-            		{
-                		$this->access_denied_message('MEMBERLIST_SEARCH_BLOCKED');
-            		}
-
-            		// Are we trying to access group memberships?
-            		if ($page === 'group')
-            		{
-              			$this->access_denied_message('MEMBERLIST_GROUP_BLOCKED');
-            		}
-
-            		// Default is full memberlist. This gets loaded if no other conditions are met.
-            		$this->access_denied_message('MEMBERLIST_FULL_BLOCKED');
+			// Trigger denied message
+			$this->access_denied_message($page);
 
 		}	
 	}
 	
-	private function access_denied_message($message)
-    	{
-        	// Display access denied message.
-        	if (!$this->auth->acl_gets('a_user', 'a_userdel'))
-        	{
+	private function access_denied_message($page)
+	{
+		$message = 'MEMBERLIST_' . strtoupper($page) . '_BLOCKED';
+		if ($this->language->is_set($message) !== true)
+		{
+			$message = 'MEMBERLIST_FULL_BLOCKED';
+		}
+
+		// Display access denied message.
+		if (!$this->auth->acl_gets('a_user', 'a_userdel'))
+		{
 			trigger_error($message);
-        	}
-    	}
+		}
+	}
 }

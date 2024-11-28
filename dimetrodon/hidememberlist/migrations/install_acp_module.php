@@ -22,7 +22,6 @@ class install_acp_module extends \phpbb\db\migration\migration
 	public function update_data()
 	{
 		return [
-			['config.add', ['dimetrodon_hidememberlist_options', 0]],
 			['config.add', ['dimetrodon_hideteam_options', 0]],
 
 			['module.add', [
