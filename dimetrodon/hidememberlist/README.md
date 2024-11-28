@@ -9,3 +9,5 @@ Go to "ACP" > "Customise" > "Extensions" and enable the "Hide Memberlist" extens
 ## License
 
 [GNU General Public License v2](license.txt)
+
+Editing this to test a pull request.
