@@ -77,19 +77,19 @@ class main_listener implements EventSubscriberInterface
 			//Load the language file. We only have to do this once now. 
 			$this->language->add_lang('common', 'dimetrodon/hidememberlist');
 
-            		if (str_contains($page, 'mode'))
-            		{
-            			$page = substr($page, strpos($page, 'mode') + 5);
-             			$page = explode('/', str_replace(['=', '&'], '/', $page))[0];
-            		}
+			if (str_contains($page, 'mode'))
+			{
+				$page = substr($page, strpos($page, 'mode') + 5);
+				$page = explode('/', str_replace(['=', '&'], '/', $page))[0];
+			}
 
-            		if (in_array($page, $exclude))
-            		{
-            			return;
+			if (in_array($page, $exclude))
+			{
+				return;
            		}
 
 			// Trigger denied message
-            		$this->access_denied_message($page);
+			$this->access_denied_message($page);
 
 		}	
 	}
