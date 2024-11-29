@@ -30,7 +30,7 @@ class acp_controller
 	 *
 	 */
 	public function __construct(
-	
+
 		protected config $config,
 		protected language $language,
 		protected log $log,
@@ -41,7 +41,7 @@ class acp_controller
 	)
 	{
 	}
-	
+
 	/**
 	 * Display the options a user can configure for this extension.
 	 *
