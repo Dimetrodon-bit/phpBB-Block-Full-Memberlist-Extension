@@ -39,9 +39,7 @@ $lang = array_merge($lang, [
 	'MEMBERLIST_FULL_BLOCKED'		=> 'Sorry but you are not permitted to view the memberlist.',
 	'MEMBERLIST_GROUP_BLOCKED'		=> 'Sorry but you are not permitted to view group details.',
 	'MEMBERLIST_SEARCHUSER_BLOCKED'		=> 'Sorry but you are not permitted to search users.',
-	
 
-	
 	'ACP_HIDETEAM_QUESTION'			=> 'Disable the team page for all users',
 	'ACP_HIDEMEMBERLIST_SETTING_SAVED'	=> 'Settings have been saved successfully!',
 

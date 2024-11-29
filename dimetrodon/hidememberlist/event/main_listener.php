@@ -31,11 +31,11 @@ class main_listener implements EventSubscriberInterface
 		private language $language,
 		private twig $twig,
 		private user $user,
-		
+
 	)
 	{
 	}
-	
+
 	public static function getSubscribedEvents(): array
 	{
 		return [
@@ -47,16 +47,16 @@ class main_listener implements EventSubscriberInterface
 
 	/**
 	 * Loads after the page header.
-	 * Blocks access to memberlist to non-Admins. 
+	 * Blocks access to memberlist to non-Admins.
 	 *
 	 * @param \phpbb\event\data	$event	Event object
 	 */
 	public function header_after($event): void
 	{
-		// Let's set our page variable. 
+		// Let's set our page variable.
 		$page = $this->user->page['page'];
 		$exclude = ['viewprofile', 'team', 'email', 'contactadmin'];
-		
+
 		// Checking to see if the team page is disabled.
 		if ($this->config['dimetrodon_hideteam_options'])
 		{
@@ -64,17 +64,17 @@ class main_listener implements EventSubscriberInterface
 			$this->twig->assign_var('U_TEAM', false);
 			unset($exclude[1]);
 		}
-		
-		// Globally removing memberlist links for non-admins if the extension is enabled. 
+
+		// Globally removing memberlist links for non-admins if the extension is enabled.
 		if (!$this->auth->acl_gets('a_user', 'a_userdel'))
 		{
 			$this->twig->assign_var('S_DISPLAY_MEMBERLIST', false);
 		}
-		
+
 		// Checking to see if we are viewing a page pertaining to the memberlist.
 		if (str_contains($page, 'memberlist'))
 		{
-			//Load the language file. We only have to do this once now. 
+			//Load the language file. We only have to do this once now.
 			$this->language->add_lang('common', 'dimetrodon/hidememberlist');
 
 			if (str_contains($page, 'mode'))
@@ -91,9 +91,9 @@ class main_listener implements EventSubscriberInterface
 			// Trigger denied message
 			$this->access_denied_message($page);
 
-		}	
+		}
 	}
-	
+
 	private function access_denied_message($page)
 	{
 		$message = 'MEMBERLIST_' . strtoupper($page) . '_BLOCKED';
