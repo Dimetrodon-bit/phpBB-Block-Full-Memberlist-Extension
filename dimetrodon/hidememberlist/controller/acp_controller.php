@@ -28,12 +28,6 @@ class acp_controller
 	/**
 	 * Constructor.
 	 *
-	 * @param \phpbb\config\config		$config		Config object
-	 * @param \phpbb\language\language	$language	Language object
-	 * @param \phpbb\log\log			$log		Log object
-	 * @param \phpbb\request\request	$request	Request object
-	 * @param \phpbb\template\template	$template	Template object
-	 * @param \phpbb\user				$user		User object
 	 */
 	public function __construct(
 	
