@@ -25,7 +25,6 @@ class acp_controller
 	/** @var string Custom form action */
 	protected $u_action;
 
-
 	public function __construct(
 
 		protected config $config,
