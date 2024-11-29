@@ -26,14 +26,12 @@ class acp_controller
 	protected $u_action;
 
 	public function __construct(
-
 		protected config $config,
 		protected language $language,
 		protected log $log,
 		protected request $request,
 		protected template $template,
 		protected user $user,
-
 	)
 	{
 	}
