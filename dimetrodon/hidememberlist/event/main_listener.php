@@ -87,7 +87,6 @@ class main_listener implements EventSubscriberInterface
 
 			// Trigger denied message
 			$this->access_denied_message($page);
-
 		}
 	}
 
