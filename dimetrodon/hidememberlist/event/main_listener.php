@@ -31,7 +31,6 @@ class main_listener implements EventSubscriberInterface
 		private language $language,
 		private twig $twig,
 		private user $user,
-
 	)
 	{
 	}
@@ -42,8 +41,6 @@ class main_listener implements EventSubscriberInterface
 			'core.page_header_after' => 'header_after',
 		];
 	}
-
-
 
 	/**
 	 * Loads after the page header.
