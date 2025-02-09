@@ -73,9 +73,9 @@ class main_listener implements EventSubscriberInterface
 		{
 			// Do not execute restrictive code if all modes are already blocked by permission system. 
 			if (!$this->auth->acl_get('u_viewprofile'))
-            		{
-                		return;
-            		}
+			{
+				return;
+			}
 			//Load the language file. We only have to do this once now.
 			$this->language->add_lang('common', 'dimetrodon/hidememberlist');
 
