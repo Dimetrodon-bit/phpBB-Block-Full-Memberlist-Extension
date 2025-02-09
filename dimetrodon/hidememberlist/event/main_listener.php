@@ -71,6 +71,11 @@ class main_listener implements EventSubscriberInterface
 		// Checking to see if we are viewing a page pertaining to the memberlist.
 		if (str_contains($page, 'memberlist'))
 		{
+			// Do not execute restrictive code if all modes are already blocked by permission system. 
+			if (!$this->auth->acl_get('u_viewprofile'))
+            {
+                return;
+            }
 			//Load the language file. We only have to do this once now.
 			$this->language->add_lang('common', 'dimetrodon/hidememberlist');
 
