@@ -24,7 +24,7 @@ class ext extends \phpbb\extension\base
 		$language->add_lang('common', 'dimetrodon/hidememberlist');
 
 			/**
-			* Extension can only be executed in PHP 8.1 or higher. 
+   			* Extension can only be executed in PHP 8.1 or higher. 
 			* Check PHP version to ensure compatability.
 			*/
 		if (version_compare(PHP_VERSION, '8.1.0', '<'))
