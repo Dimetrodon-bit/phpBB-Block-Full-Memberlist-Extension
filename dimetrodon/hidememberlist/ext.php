@@ -13,14 +13,12 @@ namespace dimetrodon\hidememberlist;
 /**
  * Hide Memberlist Extension base
  *
- * It is recommended to remove this file from
- * an extension if it is not going to be used.
+ * This contains importiant PHP checks
+ * Of course this mammal-like reptile will use it
  */
 class ext extends \phpbb\extension\base
 {
 	public function is_enableable()
-
-	
 	{
 		$language= $this->container->get('language');
 		$language->add_lang('common', 'dimetrodon/hidememberlist');
