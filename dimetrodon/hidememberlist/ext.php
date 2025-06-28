@@ -13,7 +13,7 @@ namespace dimetrodon\hidememberlist;
 /**
  * Hide Memberlist Extension base
  *
- * This contains importiant PHP checks
+ * This contains important PHP checks
  * Of course this mammal-like reptile will use it
  */
 class ext extends \phpbb\extension\base
