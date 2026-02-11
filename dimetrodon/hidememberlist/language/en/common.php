@@ -39,6 +39,7 @@ $lang = array_merge($lang, [
 	'MEMBERLIST_FULL_BLOCKED'		=> 'Sorry but you are not permitted to view the memberlist.',
 	'MEMBERLIST_GROUP_BLOCKED'		=> 'Sorry but you are not permitted to view group details.',
 	'MEMBERLIST_SEARCHUSER_BLOCKED'		=> 'Sorry but you are not permitted to search users.',
+	'PHP_VERSION_TOO_LOW'			=> 'This extension requires PHP 8.1 or above.',
 
 	'ACP_HIDETEAM_QUESTION'			=> 'Disable the team page for all users',
 	'ACP_HIDEMEMBERLIST_SETTING_SAVED'	=> 'Settings have been saved successfully!',
