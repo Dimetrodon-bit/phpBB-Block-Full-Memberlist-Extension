@@ -27,7 +27,7 @@ class ext extends \phpbb\extension\base
 			* Extension can only be executed in PHP 8.1 or higher.
 			* Check PHP version to ensure compatibility.
 			*/
-		if (version_compare(PHP_VERSION, '8.1.0', '<='))
+		if (version_compare(PHP_VERSION, '8.1.0', '<'))
 		{
 			// Display error message and do not enable if php version is below 8.1
 			return $language->lang('PHP_VERSION_TOO_LOW');
