@@ -38,7 +38,7 @@ class main_listener implements EventSubscriberInterface
 	public static function getSubscribedEvents(): array
 	{
 		return [
-			'core.page_header_after' => 'header_after',
+			'core.memberlist_modify_template_vars' => 'memberlist_template',
 		];
 	}
 
@@ -48,7 +48,7 @@ class main_listener implements EventSubscriberInterface
 	 *
 	 * @param \phpbb\event\data	$event	Event object
 	 */
-	public function header_after($event): void
+	public function memberlist_template($event): void
 	{
 		// Let's set our page variable.
 		$page = $this->user->page['page'];
